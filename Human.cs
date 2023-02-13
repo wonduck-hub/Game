@@ -8,17 +8,67 @@ namespace Game
 {
 	internal class Human
 	{
-		private String name;
-		private int life = 100;
-		private int power = 10;
-		private int defense = 5;
-
-		public Human(string name)
+		public String name
 		{
-			this.name = name;
+			get { return this.name; }
+			set { this.name = value; }
+		}
+		public int life
+		{
+			get { return this.life; }
+			set
+			{
+				if (value <= 0)
+				{
+					this.life = 100;
+				}
+				else
+				{
+					this.life = value;
+				}
+			}
+		}
+		public int power
+		{
+			get { return this.power; }
+			set
+			{
+				if(value <= 0)
+				{
+					this.power = 10;
+				}
+				else
+				{
+					this.power = value;
+				}
+			}
+		}
+		public int defense
+		{
+			get { return this.defense; }
+			set
+			{
+				if(value <= 0)
+				{
+					this.defense = 5;
+				}
+				else
+				{
+					this.defense = value;
+				}
+			}
 		}
 
-		public void attack(Human enemy)
+		public Human(int life, int power, int defense)
+		{
+			this.name = "testHuman";
+			this.life = life;
+			this.power = power;
+			this.defense = defense;
+		}
+
+		
+		public void Attack(Human enemy)
 		{
 			enemy.life -= this.power - enemy.defense;
 		}
