@@ -12,7 +12,8 @@ namespace Game
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
 			Hero hero = new Hero(100, 10, 5, Weapon.SWORD);
-			Application.Run(new Form1(hero));
+			Enemy enemy = new Enemy(100, 8, 3);
+			Application.Run(new Form1(hero, enemy));
 
 		}
 	}

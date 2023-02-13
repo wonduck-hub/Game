@@ -4,7 +4,6 @@ namespace Game
 	{
 		private Hero _hero;
 		private Enemy _enemy;
-		const int PICTUREHEIGHT = 23;
 
 		public Hero hero
 		{
@@ -27,10 +26,10 @@ namespace Game
 
 			//hero
 			this.hero = hero;
-			this.nameBox.Text = "용사 : " + hero.name;
+			this.nameBox.Text = hero.name;
 
 			this.lifeBar.BackColor = System.Drawing.Color.Green;
-			this.lifeBar.Size = new System.Drawing.Size(hero.life, PICTUREHEIGHT);
+			this.lifeBar.Size = new System.Drawing.Size(hero.life, 23);
 
 			this.lifeLabel.Text = "hp : " + hero.life.ToString() + "%";
 
@@ -46,10 +45,10 @@ namespace Game
 
 			//enemy
 			this.enemy = enemy;
-			this.enemyNameBox.Text = "악당 : " +  enemy.name;
+			this.enemyNameBox.Text = enemy.name;
 
 			this.enemyLifeBar.BackColor = System.Drawing.Color.Red;
-			this.enemyLifeBar.Size = new System.Drawing.Size(enemy.life, PICTUREHEIGHT);
+			this.enemyLifeBar.Size = new System.Drawing.Size(enemy.life, 23);
 
 			this.enemyLifeLabel.Text = "hp : " + enemy.life.ToString() + "%";
 
@@ -92,37 +91,7 @@ namespace Game
 
 		private void endTurnButton_Click(object sender, EventArgs e)
 		{
-			this.textBox.Text += System.Environment.NewLine;
-			heroAttack(hero, enemy);
-			enemyAttack(hero, enemy);
-			showAllStatus();
-
-			this.textBox.Text += System.Environment.NewLine;
-		}
-
-		private void heroAttack(Hero hero, Enemy enemy)
-		{
-			this.textBox.Text += this.hero.name + "이 " + this.enemy.name + "을 정의롭게 공격!";
-			this.textBox.Text += System.Environment.NewLine;
-			hero.attack(enemy);
-			this.enemyLifeBar.Size = new System.Drawing.Size(this.hero.life, PICTUREHEIGHT);
-			this.lifeLabel.Text = "hp : " + hero.life.ToString() + "%";
-		}
-
-		private void enemyAttack(Hero hero, Enemy enemy)
-		{
-			this.textBox.Text += this.enemy.name + "이 " + this.hero.name + "을 비열하게 공격!";
-			this.textBox.Text += System.Environment.NewLine;
-			enemy.attack(hero);
-			this.lifeBar.Size = new System.Drawing.Size(this.hero.life, PICTUREHEIGHT);
-			this.enemyLifeLabel.Text = "hp : " + hero.life.ToString() + "%";
-		}
-
-		private void showAllStatus()
-		{
-			this.textBox.Text += this.hero.name + "의 hp : " + this.hero.life.ToString();
-			this.textBox.Text += System.Environment.NewLine;
-			this.textBox.Text += this.enemy.name + "의 hp : " + this.enemy.life.ToString();
+			this.textBox.Text += "공격";
 			this.textBox.Text += System.Environment.NewLine;
 		}
 	}

@@ -36,8 +36,20 @@
 			this.powerLabel = new System.Windows.Forms.Label();
 			this.defenseLabel = new System.Windows.Forms.Label();
 			this.heroPicture = new System.Windows.Forms.PictureBox();
+			this.endTurnButton = new System.Windows.Forms.Button();
+			this.textBox = new System.Windows.Forms.TextBox();
+			this.enemyNameBox = new System.Windows.Forms.TextBox();
+			this.enemyLifeBar = new System.Windows.Forms.PictureBox();
+			this.enemyLifeLabel = new System.Windows.Forms.Label();
+			this.enemyDefenseLabel = new System.Windows.Forms.Label();
+			this.enemyPowerLabel = new System.Windows.Forms.Label();
+			this.enemyPowerBar = new System.Windows.Forms.TextBox();
+			this.enemyDefenseBar = new System.Windows.Forms.TextBox();
+			this.enemyPicture = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.lifeBar)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heroPicture)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.enemyLifeBar)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.enemyPicture)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// lifeBar
@@ -57,6 +69,7 @@
 			this.nameBox.ReadOnly = true;
 			this.nameBox.Size = new System.Drawing.Size(100, 23);
 			this.nameBox.TabIndex = 4;
+			this.nameBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// lifeLabel
 			// 
@@ -73,6 +86,7 @@
 			this.powerBox.Name = "powerBox";
 			this.powerBox.Size = new System.Drawing.Size(100, 23);
 			this.powerBox.TabIndex = 6;
+			this.powerBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// defenseBox
 			// 
@@ -80,6 +94,7 @@
 			this.defenseBox.Name = "defenseBox";
 			this.defenseBox.Size = new System.Drawing.Size(100, 23);
 			this.defenseBox.TabIndex = 7;
+			this.defenseBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// powerLabel
 			// 
@@ -107,11 +122,110 @@
 			this.heroPicture.TabIndex = 10;
 			this.heroPicture.TabStop = false;
 			// 
+			// endTurnButton
+			// 
+			this.endTurnButton.Location = new System.Drawing.Point(12, 709);
+			this.endTurnButton.Name = "endTurnButton";
+			this.endTurnButton.Size = new System.Drawing.Size(150, 40);
+			this.endTurnButton.TabIndex = 11;
+			this.endTurnButton.Text = "button1";
+			this.endTurnButton.UseVisualStyleBackColor = true;
+			this.endTurnButton.Click += new System.EventHandler(this.endTurnButton_Click);
+			// 
+			// textBox
+			// 
+			this.textBox.BackColor = System.Drawing.SystemColors.Info;
+			this.textBox.Location = new System.Drawing.Point(280, 12);
+			this.textBox.Name = "textBox";
+			this.textBox.ReadOnly = true;
+			this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox.Size = new System.Drawing.Size(650, 23);
+			this.textBox.TabIndex = 12;
+			// 
+			// enemyNameBox
+			// 
+			this.enemyNameBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.enemyNameBox.Location = new System.Drawing.Point(1072, 12);
+			this.enemyNameBox.Name = "enemyNameBox";
+			this.enemyNameBox.ReadOnly = true;
+			this.enemyNameBox.Size = new System.Drawing.Size(100, 23);
+			this.enemyNameBox.TabIndex = 13;
+			this.enemyNameBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// enemyLifeBar
+			// 
+			this.enemyLifeBar.Location = new System.Drawing.Point(1072, 97);
+			this.enemyLifeBar.Name = "enemyLifeBar";
+			this.enemyLifeBar.Size = new System.Drawing.Size(100, 23);
+			this.enemyLifeBar.TabIndex = 14;
+			this.enemyLifeBar.TabStop = false;
+			// 
+			// enemyLifeLabel
+			// 
+			this.enemyLifeLabel.AutoSize = true;
+			this.enemyLifeLabel.Location = new System.Drawing.Point(997, 97);
+			this.enemyLifeLabel.Name = "enemyLifeLabel";
+			this.enemyLifeLabel.Size = new System.Drawing.Size(38, 15);
+			this.enemyLifeLabel.TabIndex = 15;
+			this.enemyLifeLabel.Text = "label1";
+			// 
+			// enemyDefenseLabel
+			// 
+			this.enemyDefenseLabel.AutoSize = true;
+			this.enemyDefenseLabel.Location = new System.Drawing.Point(997, 155);
+			this.enemyDefenseLabel.Name = "enemyDefenseLabel";
+			this.enemyDefenseLabel.Size = new System.Drawing.Size(38, 15);
+			this.enemyDefenseLabel.TabIndex = 16;
+			this.enemyDefenseLabel.Text = "label1";
+			// 
+			// enemyPowerLabel
+			// 
+			this.enemyPowerLabel.AutoSize = true;
+			this.enemyPowerLabel.Location = new System.Drawing.Point(997, 126);
+			this.enemyPowerLabel.Name = "enemyPowerLabel";
+			this.enemyPowerLabel.Size = new System.Drawing.Size(38, 15);
+			this.enemyPowerLabel.TabIndex = 17;
+			this.enemyPowerLabel.Text = "label1";
+			// 
+			// enemyPowerBar
+			// 
+			this.enemyPowerBar.Location = new System.Drawing.Point(1072, 126);
+			this.enemyPowerBar.Name = "enemyPowerBar";
+			this.enemyPowerBar.Size = new System.Drawing.Size(100, 23);
+			this.enemyPowerBar.TabIndex = 18;
+			this.enemyPowerBar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// enemyDefenseBar
+			// 
+			this.enemyDefenseBar.Location = new System.Drawing.Point(1072, 155);
+			this.enemyDefenseBar.Name = "enemyDefenseBar";
+			this.enemyDefenseBar.Size = new System.Drawing.Size(100, 23);
+			this.enemyDefenseBar.TabIndex = 19;
+			this.enemyDefenseBar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// enemyPicture
+			// 
+			this.enemyPicture.Location = new System.Drawing.Point(1122, 41);
+			this.enemyPicture.Name = "enemyPicture";
+			this.enemyPicture.Size = new System.Drawing.Size(50, 50);
+			this.enemyPicture.TabIndex = 20;
+			this.enemyPicture.TabStop = false;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1184, 761);
+			this.Controls.Add(this.enemyPicture);
+			this.Controls.Add(this.enemyDefenseBar);
+			this.Controls.Add(this.enemyPowerBar);
+			this.Controls.Add(this.enemyPowerLabel);
+			this.Controls.Add(this.enemyDefenseLabel);
+			this.Controls.Add(this.enemyLifeLabel);
+			this.Controls.Add(this.enemyLifeBar);
+			this.Controls.Add(this.enemyNameBox);
+			this.Controls.Add(this.textBox);
+			this.Controls.Add(this.endTurnButton);
 			this.Controls.Add(this.heroPicture);
 			this.Controls.Add(this.defenseLabel);
 			this.Controls.Add(this.powerLabel);
@@ -127,6 +241,8 @@
 			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.lifeBar)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.heroPicture)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.enemyLifeBar)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.enemyPicture)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -141,5 +257,15 @@
 		private Label powerLabel;
 		private Label defenseLabel;
 		private PictureBox heroPicture;
+		private Button endTurnButton;
+		private TextBox textBox;
+		private TextBox enemyNameBox;
+		private PictureBox enemyLifeBar;
+		private Label enemyLifeLabel;
+		private Label enemyDefenseLabel;
+		private Label enemyPowerLabel;
+		private TextBox enemyPowerBar;
+		private TextBox enemyDefenseBar;
+		private PictureBox enemyPicture;
 	}
 }

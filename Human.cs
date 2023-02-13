@@ -12,9 +12,10 @@ namespace Game
 		private int _life;
 		private int _power;
 		private int _defense;
+
 		public String name
 		{
-			get { return "용사 " + _name; }
+			get { return _name; }
 			set { _name = value; }
 		}
 		public int life
@@ -65,14 +66,13 @@ namespace Game
 
 		public Human(int life, int power, int defense)
 		{
-			this._name = "왕중량";
 			this._life = life;
 			this._power = power;
 			this._defense = defense;
 		}
 
 		
-		public void Attack(Human enemy)
+		public void attack(Human enemy)
 		{
 			enemy.life -= this.power - enemy.defense;
 		}
