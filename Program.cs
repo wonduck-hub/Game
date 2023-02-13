@@ -11,7 +11,9 @@ namespace Game
 			// To customize application configuration such as set high DPI settings or default font,
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
-			Application.Run(new Form1());
+			Hero hero = new Hero(100, 10, 5, Weapon.SWORD);
+			Application.Run(new Form1(hero));
+
 		}
 	}
 }

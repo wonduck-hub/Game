@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-	internal class Hero : Human
+	public class Hero : Human
 	{
 		private Weapon weapon;
 		public Hero(int life, int power, int defense, Weapon weapon) : base(life, power, defense)
@@ -17,19 +17,22 @@ namespace Game
 		{
 			switch (weapon)
 			{
+				//TODO 나중에 무기별 공격력 계산하는 함수로 추가
 				case Weapon.SWORD:
-					enemy.life -= (this.power + 5) - enemy.defense;
+					enemy.life -= SwordAttackPower() - enemy.defense;
 					break;
 				case Weapon.BOW:
-					enemy.life -= (this.power + 5) - enemy.defense;
 					break;
 				case Weapon.DAGGER:
-					enemy.life -= (this.power + 5) - enemy.defense;
 					break;
 				case Weapon.SPEAR:
-					enemy.life -= (this.power + 5) - enemy.defense;
 					break;
 			}
+		}	
+		public int SwordAttackPower()
+		{
+			return this.power + 5;
 		}
+
 	}
 }

@@ -6,65 +6,69 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-	internal class Human
+	public class Human
 	{
+		private String _name;
+		private int _life;
+		private int _power;
+		private int _defense;
 		public String name
 		{
-			get { return this.name; }
-			set { this.name = value; }
+			get { return "용사 " + _name; }
+			set { _name = value; }
 		}
 		public int life
 		{
-			get { return this.life; }
+			get { return _life; }
 			set
 			{
 				if (value <= 0)
 				{
-					this.life = 100;
+					_life = 100;
 				}
 				else
 				{
-					this.life = value;
+					_life = value;
 				}
 			}
 		}
 		public int power
 		{
-			get { return this.power; }
+			get { return _power; }
 			set
 			{
 				if(value <= 0)
 				{
-					this.power = 10;
+					_power = 10;
 				}
 				else
 				{
-					this.power = value;
+					_power = value;
 				}
 			}
 		}
 		public int defense
 		{
-			get { return this.defense; }
+			get { return _defense; }
 			set
 			{
 				if(value <= 0)
 				{
-					this.defense = 5;
+					_defense = 5;
 				}
 				else
 				{
-					this.defense = value;
+					_defense = value;
 				}
 			}
 		}
 
 		public Human(int life, int power, int defense)
 		{
-			this.name = "testHuman";
-			this.life = life;
-			this.power = power;
-			this.defense = defense;
+			this._name = "왕중량";
+			this._life = life;
+			this._power = power;
+			this._defense = defense;
 		}
 
 		
