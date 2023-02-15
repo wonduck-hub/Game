@@ -20,64 +20,6 @@ namespace Game
 		{
 			InitializeComponent();
 			reset(hero, enemy);
-			/*
-			this.Size = new System.Drawing.Size(1200, 800);
-			this.MaximizeBox = false;
-			this.FormBorderStyle = FormBorderStyle.FixedSingle;
-			this.Name = "DuckGame";
-			this.Text = "DuckGame";
-
-			//hero
-			this.hero = hero;
-			this.nameBox.Text = "용사 : " + hero.name;
-
-			this.lifeBar.BackColor = System.Drawing.Color.Green;
-			this.lifeBar.Size = new System.Drawing.Size(hero.life, PICTUREHEIGHT);
-
-			this.lifeLabel.Text = "hp : " + hero.life.ToString() + "%";
-
-			this.powerBox.ReadOnly = true;
-			this.powerBox.Text = hero.power.ToString();
-			this.powerLabel.Text = "power : ";
-
-			this.defenseBox.ReadOnly = true;
-			this.defenseBox.Text = hero.defense.ToString();
-			this.defenseLabel.Text = "defense : ";
-
-			this.heroPicture.Load(hero.img);
-
-			this.attackRadioButton.Text = "attack";
-			this.attackRadioButton.Checked = true;
-
-			this.defenseRadioButton.Text = "defense";
-
-			this.dubbleAttackRadioButton.Text = "dubble attack";
-
-			//enemy
-			this.enemy = enemy;
-			this.enemyNameBox.Text = "악당 : " +  enemy.name;
-
-			this.enemyLifeBar.BackColor = System.Drawing.Color.Red;
-			this.enemyLifeBar.Size = new System.Drawing.Size(enemy.life, PICTUREHEIGHT);
-
-			this.enemyLifeLabel.Text = "hp : " + enemy.life.ToString() + "%";
-
-			this.enemyPowerBar.ReadOnly = true;
-			this.enemyPowerBar.Text = enemy.power.ToString();
-			this.enemyPowerLabel.Text = "power : ";
-
-			this.enemyDefenseBar.ReadOnly = true;
-			this.enemyDefenseBar.Text = enemy.defense.ToString();
-			this.enemyDefenseLabel.Text = "defense : ";
-
-			this.enemyPicture.Load(@"gan.png");
-
-			//기타
-			this.endTurnButton.Text = "End Turn";
-
-			this.textBox.Multiline = true;
-			this.textBox.Size = new System.Drawing.Size(650, 650);
-			*/
 		}
 
 		private void reset(Hero hero, Enemy enemy)
@@ -245,6 +187,17 @@ namespace Game
 					Application.Exit();
 				};
 
+			} else if(this.hero.life <= 0)
+			{
+				if(MessageBox.Show("용사 " + this.hero.name + "가 죽었다!\n다시 할건가?", "패배", MessageBoxButtons.YesNo) 
+					== DialogResult.Yes)
+				{
+					reset(new Hero(100, 10, 5, Weapon.SWORD, "middle.png"), new Enemy(100, 8, 3, "gan.png"));
+					applyLife();
+				} else
+				{
+					Application.Exit();
+				};
 			}
 		}
 
