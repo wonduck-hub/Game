@@ -21,17 +21,7 @@ namespace Game
 		public int life
 		{
 			get { return _life; }
-			set
-			{
-				if (value <= 0)
-				{
-					_life = 100;
-				}
-				else
-				{
-					_life = value;
-				}
-			}
+			set { _life = value; }
 		}
 		public int power
 		{

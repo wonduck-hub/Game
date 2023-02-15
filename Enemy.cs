@@ -8,9 +8,17 @@ namespace Game
 {
 	public class Enemy : Human
 	{
-		public Enemy(int life, int power, int defense) : base(life, power, defense)
+		private string _img;
+
+		public string img
+		{
+			get { return _img; }
+			set { _img = value; }
+		}
+		public Enemy(int life, int power, int defense, string img) : base(life, power, defense)
 		{
 			this.name = "복간준";
+			this.img = img;
 		}
 		public new void attack(Human enemy)
 		{

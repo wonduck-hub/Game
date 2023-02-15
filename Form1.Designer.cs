@@ -46,6 +46,9 @@
 			this.enemyPowerBar = new System.Windows.Forms.TextBox();
 			this.enemyDefenseBar = new System.Windows.Forms.TextBox();
 			this.enemyPicture = new System.Windows.Forms.PictureBox();
+			this.attackRadioButton = new System.Windows.Forms.RadioButton();
+			this.dubbleAttackRadioButton = new System.Windows.Forms.RadioButton();
+			this.defenseRadioButton = new System.Windows.Forms.RadioButton();
 			((System.ComponentModel.ISupportInitialize)(this.lifeBar)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heroPicture)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.enemyLifeBar)).BeginInit();
@@ -211,11 +214,47 @@
 			this.enemyPicture.TabIndex = 20;
 			this.enemyPicture.TabStop = false;
 			// 
+			// attackRadioButton
+			// 
+			this.attackRadioButton.AutoSize = true;
+			this.attackRadioButton.Location = new System.Drawing.Point(12, 228);
+			this.attackRadioButton.Name = "attackRadioButton";
+			this.attackRadioButton.Size = new System.Drawing.Size(94, 19);
+			this.attackRadioButton.TabIndex = 21;
+			this.attackRadioButton.TabStop = true;
+			this.attackRadioButton.Text = "radioButton1";
+			this.attackRadioButton.UseVisualStyleBackColor = true;
+			// 
+			// dubbleAttackRadioButton
+			// 
+			this.dubbleAttackRadioButton.AutoSize = true;
+			this.dubbleAttackRadioButton.Location = new System.Drawing.Point(12, 278);
+			this.dubbleAttackRadioButton.Name = "dubbleAttackRadioButton";
+			this.dubbleAttackRadioButton.Size = new System.Drawing.Size(94, 19);
+			this.dubbleAttackRadioButton.TabIndex = 23;
+			this.dubbleAttackRadioButton.TabStop = true;
+			this.dubbleAttackRadioButton.Text = "radioButton2";
+			this.dubbleAttackRadioButton.UseVisualStyleBackColor = true;
+			// 
+			// defenseRadioButton
+			// 
+			this.defenseRadioButton.AutoSize = true;
+			this.defenseRadioButton.Location = new System.Drawing.Point(12, 253);
+			this.defenseRadioButton.Name = "defenseRadioButton";
+			this.defenseRadioButton.Size = new System.Drawing.Size(94, 19);
+			this.defenseRadioButton.TabIndex = 24;
+			this.defenseRadioButton.TabStop = true;
+			this.defenseRadioButton.Text = "radioButton3";
+			this.defenseRadioButton.UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1184, 761);
+			this.Controls.Add(this.defenseRadioButton);
+			this.Controls.Add(this.dubbleAttackRadioButton);
+			this.Controls.Add(this.attackRadioButton);
 			this.Controls.Add(this.enemyPicture);
 			this.Controls.Add(this.enemyDefenseBar);
 			this.Controls.Add(this.enemyPowerBar);
@@ -267,5 +306,8 @@
 		private TextBox enemyPowerBar;
 		private TextBox enemyDefenseBar;
 		private PictureBox enemyPicture;
+		private RadioButton attackRadioButton;
+		private RadioButton dubbleAttackRadioButton;
+		private RadioButton defenseRadioButton;
 	}
 }
