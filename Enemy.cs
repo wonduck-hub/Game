@@ -20,7 +20,7 @@ namespace Game
 			this.name = "복간준";
 			this.img = img;
 		}
-		public new void attack(Human enemy)
+		public override void attack(Human enemy)
 		{
 			enemy.life -= this.power - enemy.defense;
 		}

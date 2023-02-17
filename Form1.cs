@@ -3,6 +3,10 @@ namespace Game
 	public partial class Form1 : Form
 	{
 		private Hero _hero;
+		private const int HERO_LIFE = 100;
+		private const int HERO_POWER = 10;
+		private const int HERO_DEFENSE = 5;
+
 		private Enemy _enemy;
 		const int PICTUREHEIGHT = 23;
 
@@ -16,13 +20,17 @@ namespace Game
 			get { return _enemy; }
 			set { _enemy = value; }
 		}
-		public Form1(Hero hero, Enemy enemy)
+		public Form1()
 		{
 			InitializeComponent();
+
+			hero = new Hero(HERO_LIFE, HERO_POWER, HERO_DEFENSE, "middle.png");
+			enemy = new Enemy(100, 8, 3, "gan.png");
+
 			reset(hero, enemy);
 		}
 
-		private void reset(Hero hero, Enemy enemy)
+		public void reset(Hero hero, Enemy enemy)
 		{
 			this.Size = new System.Drawing.Size(1200, 800);
 			this.MaximizeBox = false;
@@ -56,7 +64,8 @@ namespace Game
 
 			this.defenseRadioButton.Text = "defense";
 
-			this.dubbleAttackRadioButton.Text = "dubble attack";
+			this.skill1RadioButton.Text = this.hero.skillName1;
+			this.skill2RadioButton.Text = this.hero.skillName2;
 
 			//enemy
 			this.enemyNameBox.Text = "악당 : " +  enemy.name;
@@ -118,7 +127,7 @@ namespace Game
 				applyLife();
 				showAllStatus();
 				checkWinLoss();
-			} else if (this.dubbleAttackRadioButton.Checked)
+			} else if (this.skill1RadioButton.Checked)
 			{
 				heroDoubleAttack();
 				enemyAttack();
@@ -180,7 +189,7 @@ namespace Game
 				if(MessageBox.Show("악당 " + this.enemy.name + "을 죽였다!\n다시 할건가?", "승리", MessageBoxButtons.YesNo) 
 					== DialogResult.Yes)
 				{
-					reset(new Hero(100, 10, 5, Weapon.SWORD, "middle.png"), new Enemy(100, 8, 3, "gan.png"));
+					reset(new Hero(HERO_LIFE, HERO_POWER, HERO_DEFENSE, "middle.png"), new Enemy(100, 8, 3, "gan.png"));
 					applyLife();
 				} else
 				{
@@ -192,7 +201,7 @@ namespace Game
 				if(MessageBox.Show("용사 " + this.hero.name + "가 죽었다!\n다시 할건가?", "패배", MessageBoxButtons.YesNo) 
 					== DialogResult.Yes)
 				{
-					reset(new Hero(100, 10, 5, Weapon.SWORD, "middle.png"), new Enemy(100, 8, 3, "gan.png"));
+					reset(new Hero(HERO_LIFE, HERO_POWER, HERO_DEFENSE, "middle.png"), new Enemy(100, 8, 3, "gan.png"));
 					applyLife();
 				} else
 				{

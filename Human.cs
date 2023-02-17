@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-	public class Human
+	public abstract class Human
 	{
 		private String _name;
 		private int _life;
@@ -56,15 +56,12 @@ namespace Game
 
 		public Human(int life, int power, int defense)
 		{
-			this._life = life;
-			this._power = power;
-			this._defense = defense;
+			this.life = life;
+			this.power = power;
+			this.defense = defense;
 		}
 
-		
-		public void attack(Human enemy)
-		{
-			enemy.life -= this.power - enemy.defense;
-		}
+
+		public abstract void attack(Human enemy);
 	}
 }

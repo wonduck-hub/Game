@@ -47,8 +47,9 @@
 			this.enemyDefenseBar = new System.Windows.Forms.TextBox();
 			this.enemyPicture = new System.Windows.Forms.PictureBox();
 			this.attackRadioButton = new System.Windows.Forms.RadioButton();
-			this.dubbleAttackRadioButton = new System.Windows.Forms.RadioButton();
+			this.skill1RadioButton = new System.Windows.Forms.RadioButton();
 			this.defenseRadioButton = new System.Windows.Forms.RadioButton();
+			this.skill2RadioButton = new System.Windows.Forms.RadioButton();
 			((System.ComponentModel.ISupportInitialize)(this.lifeBar)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heroPicture)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.enemyLifeBar)).BeginInit();
@@ -137,7 +138,7 @@
 			// 
 			// textBox
 			// 
-			this.textBox.BackColor = System.Drawing.SystemColors.Info;
+			this.textBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.textBox.Location = new System.Drawing.Point(280, 12);
 			this.textBox.Name = "textBox";
 			this.textBox.ReadOnly = true;
@@ -225,16 +226,16 @@
 			this.attackRadioButton.Text = "radioButton1";
 			this.attackRadioButton.UseVisualStyleBackColor = true;
 			// 
-			// dubbleAttackRadioButton
+			// skill1RadioButton
 			// 
-			this.dubbleAttackRadioButton.AutoSize = true;
-			this.dubbleAttackRadioButton.Location = new System.Drawing.Point(12, 278);
-			this.dubbleAttackRadioButton.Name = "dubbleAttackRadioButton";
-			this.dubbleAttackRadioButton.Size = new System.Drawing.Size(94, 19);
-			this.dubbleAttackRadioButton.TabIndex = 23;
-			this.dubbleAttackRadioButton.TabStop = true;
-			this.dubbleAttackRadioButton.Text = "radioButton2";
-			this.dubbleAttackRadioButton.UseVisualStyleBackColor = true;
+			this.skill1RadioButton.AutoSize = true;
+			this.skill1RadioButton.Location = new System.Drawing.Point(12, 278);
+			this.skill1RadioButton.Name = "skill1RadioButton";
+			this.skill1RadioButton.Size = new System.Drawing.Size(94, 19);
+			this.skill1RadioButton.TabIndex = 23;
+			this.skill1RadioButton.TabStop = true;
+			this.skill1RadioButton.Text = "radioButton2";
+			this.skill1RadioButton.UseVisualStyleBackColor = true;
 			// 
 			// defenseRadioButton
 			// 
@@ -247,13 +248,25 @@
 			this.defenseRadioButton.Text = "radioButton3";
 			this.defenseRadioButton.UseVisualStyleBackColor = true;
 			// 
+			// skill2RadioButton
+			// 
+			this.skill2RadioButton.AutoSize = true;
+			this.skill2RadioButton.Location = new System.Drawing.Point(12, 303);
+			this.skill2RadioButton.Name = "skill2RadioButton";
+			this.skill2RadioButton.Size = new System.Drawing.Size(94, 19);
+			this.skill2RadioButton.TabIndex = 25;
+			this.skill2RadioButton.TabStop = true;
+			this.skill2RadioButton.Text = "radioButton2";
+			this.skill2RadioButton.UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1184, 761);
+			this.Controls.Add(this.skill2RadioButton);
 			this.Controls.Add(this.defenseRadioButton);
-			this.Controls.Add(this.dubbleAttackRadioButton);
+			this.Controls.Add(this.skill1RadioButton);
 			this.Controls.Add(this.attackRadioButton);
 			this.Controls.Add(this.enemyPicture);
 			this.Controls.Add(this.enemyDefenseBar);
@@ -307,7 +320,8 @@
 		private TextBox enemyDefenseBar;
 		private PictureBox enemyPicture;
 		private RadioButton attackRadioButton;
-		private RadioButton dubbleAttackRadioButton;
+		private RadioButton skill1RadioButton;
 		private RadioButton defenseRadioButton;
+		private RadioButton skill2RadioButton;
 	}
 }
