@@ -3,7 +3,14 @@ namespace Game
 	public partial class Form1 : Form
 	{
 		private Hero _hero;
+		private const int HERO_LIFE = 100;
+		private const int HERO_POWER = 10;
+		private const int HERO_DEFENSE = 5;
+
 		private Enemy _enemy;
+		private List<Enemy> enemyList;
+		private int enemyCount = 0;
+		const int PICTURE_HEIGHT = 23;
 
 		public Hero hero
 		{
@@ -15,21 +22,36 @@ namespace Game
 			get { return _enemy; }
 			set { _enemy = value; }
 		}
-		public Form1(Hero hero, Enemy enemy)
+		public Form1()
 		{
 			InitializeComponent();
+
+			hero = new Hero(HERO_LIFE, HERO_POWER, HERO_DEFENSE, "middle.png");
+			enemyList.Add(new Enemy(100, 8, 2, "gan.png"));
+			enemyList.Add(new Enemy(100, 8, 2, "gan.png"));
+			enemyList.Add(new Enemy(100, 8, 2, "gan.png"));
+			enemyList.Add(new Enemy(100, 8, 2, "gan.png"));
+			enemy = enemyList[enemyCount];
+
+			reset(hero, enemy);
+		}
+
+		public void reset(Hero hero, Enemy enemy)
+		{
 			this.Size = new System.Drawing.Size(1200, 800);
 			this.MaximizeBox = false;
 			this.FormBorderStyle = FormBorderStyle.FixedSingle;
 			this.Name = "DuckGame";
 			this.Text = "DuckGame";
 
-			//hero
+			this.enemy = enemy;
 			this.hero = hero;
-			this.nameBox.Text = hero.name;
+
+			//hero
+			this.nameBox.Text = "용사 : " + hero.name;
 
 			this.lifeBar.BackColor = System.Drawing.Color.Green;
-			this.lifeBar.Size = new System.Drawing.Size(hero.life, 23);
+			this.lifeBar.Size = new System.Drawing.Size(this.hero.life, PICTURE_HEIGHT);
 
 			this.lifeLabel.Text = "hp : " + hero.life.ToString() + "%";
 
@@ -41,14 +63,21 @@ namespace Game
 			this.defenseBox.Text = hero.defense.ToString();
 			this.defenseLabel.Text = "defense : ";
 
-			this.heroPicture.Load(@"middle.png");
+			this.heroPicture.Load(hero.img);
+
+			this.attackRadioButton.Text = "attack";
+			this.attackRadioButton.Checked = true;
+
+			this.defenseRadioButton.Text = "defense";
+
+			this.skill1RadioButton.Text = this.hero.skillName1;
+			this.skill2RadioButton.Text = this.hero.skillName2;
 
 			//enemy
-			this.enemy = enemy;
-			this.enemyNameBox.Text = enemy.name;
+			this.enemyNameBox.Text = "악당 : " +  enemy.name;
 
 			this.enemyLifeBar.BackColor = System.Drawing.Color.Red;
-			this.enemyLifeBar.Size = new System.Drawing.Size(enemy.life, 23);
+			this.enemyLifeBar.Size = new System.Drawing.Size(enemy.life, PICTURE_HEIGHT);
 
 			this.enemyLifeLabel.Text = "hp : " + enemy.life.ToString() + "%";
 
@@ -91,8 +120,114 @@ namespace Game
 
 		private void endTurnButton_Click(object sender, EventArgs e)
 		{
-			this.textBox.Text += "공격";
+			if (this.attackRadioButton.Checked)
+			{
+				heroAttack();
+				enemyAttack();
+				applyLife();
+				showAllStatus();
+				checkWinLoss();
+			} else if (this.defenseRadioButton.Checked)
+			{
+				heroDefense();
+				applyLife();
+				showAllStatus();
+				checkWinLoss();
+			} else if (this.skill1RadioButton.Checked)
+			{
+				heroDoubleAttack();
+				enemyAttack();
+				applyLife();
+				showAllStatus();
+				checkWinLoss();
+			}
+
 			this.textBox.Text += System.Environment.NewLine;
 		}
+
+		private void heroAttack()
+		{
+			this.textBox.Text += this.hero.name + "이 " + this.enemy.name + "을 정의롭게 공격!";
+			this.textBox.Text += System.Environment.NewLine;
+			hero.attack(enemy);
+		}
+
+		private void heroDoubleAttack()
+		{
+			this.textBox.Text += this.hero.name + "이 " + this.enemy.name + "에게 이중 공격을 가했다!";
+			this.textBox.Text += System.Environment.NewLine;
+			hero.doubleAttack(enemy);
+		}
+
+		private void heroDefense()
+		{
+			this.textBox.Text += this.hero.name + "이 " + this.enemy.name + "의 비열한 공격을 정의롭게 막았다!";
+			this.textBox.Text += System.Environment.NewLine;
+		}
+
+		private void enemyAttack()
+		{
+			this.textBox.Text += this.enemy.name + "이 " + this.hero.name + "을 비열하게 공격!";
+			this.textBox.Text += System.Environment.NewLine;
+			enemy.attack(hero);
+		}
+
+		private void showAllStatus()
+		{
+			this.textBox.Text += this.hero.name + "의 hp : " + this.hero.life.ToString();
+			this.textBox.Text += System.Environment.NewLine;
+			this.textBox.Text += this.enemy.name + "의 hp : " + this.enemy.life.ToString();
+			this.textBox.Text += System.Environment.NewLine;
+		}
+
+		private void applyLife()
+		{
+			this.lifeBar.Size = new System.Drawing.Size(this.hero.life, PICTURE_HEIGHT);
+			this.lifeLabel.Text = "hp : " + hero.life.ToString() + "%";
+			this.enemyLifeBar.Size = new System.Drawing.Size(this.enemy.life, PICTURE_HEIGHT);
+			this.enemyLifeLabel.Text = "hp : " + enemy.life.ToString() + "%";
+		}
+
+		private void checkWinLoss()
+		{
+			if(this.enemy.life <= 0)
+			{
+				if (enemyCount < 3)
+				{
+					if (MessageBox.Show("악당 " + this.enemy.name + "을 죽였다!\n다시 할건가?", "승리", MessageBoxButtons.YesNo)
+						== DialogResult.Yes)
+					{
+						reset(new Hero(HERO_LIFE, HERO_POWER, HERO_DEFENSE, "middle.png"), new Enemy(100, 8, 3, "gan.png"));
+						applyLife();
+					}
+					else
+					{
+						Application.Exit();
+					}
+				}
+				else
+				{
+					if(MessageBox.Show("끝", "끝", MessageBoxButtons.OK) == DialogResult.OK)
+					{
+						Application.Exit();
+					}
+					Application.Exit();
+				}
+
+			} else if(this.hero.life <= 0)
+			{
+				if(MessageBox.Show("용사 " + this.hero.name + "가 죽었다!\n다시 할건가?", "패배", MessageBoxButtons.YesNo) 
+					== DialogResult.Yes)
+				{
+					reset(new Hero(HERO_LIFE, HERO_POWER, HERO_DEFENSE, "middle.png"), new Enemy(100, 8, 3, "gan.png"));
+					applyLife();
+				}
+				else
+				{
+					Application.Exit();
+				};
+			}
+		}
+
 	}
 }

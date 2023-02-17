@@ -8,7 +8,9 @@ namespace Game
 		private const int HERO_DEFENSE = 5;
 
 		private Enemy _enemy;
-		const int PICTUREHEIGHT = 23;
+		private List<Enemy> enemyList = new List<Enemy>();
+		private int enemyCount = 0;
+		const int PICTURE_HEIGHT = 23;
 
 		public Hero hero
 		{
@@ -25,12 +27,16 @@ namespace Game
 			InitializeComponent();
 
 			hero = new Hero(HERO_LIFE, HERO_POWER, HERO_DEFENSE, "middle.png");
-			enemy = new Enemy(100, 8, 3, "gan.png");
+			enemyList.Add(new Enemy(100, 8, 2, "gan.png"));
+			enemyList.Add(new Enemy(50, 8, 2, "gan.png"));
+			enemyList.Add(new Enemy(100, 8, 2, "gan.png"));
+			enemyList.Add(new Enemy(100, 8, 2, "gan.png"));
+			enemy = enemyList[enemyCount];
 
-			reset(hero, enemy);
+			reset();
 		}
 
-		public void reset(Hero hero, Enemy enemy)
+		public void reset()
 		{
 			this.Size = new System.Drawing.Size(1200, 800);
 			this.MaximizeBox = false;
@@ -38,14 +44,12 @@ namespace Game
 			this.Name = "DuckGame";
 			this.Text = "DuckGame";
 
-			this.enemy = enemy;
-			this.hero = hero;
 
 			//hero
 			this.nameBox.Text = "용사 : " + hero.name;
 
 			this.lifeBar.BackColor = System.Drawing.Color.Green;
-			this.lifeBar.Size = new System.Drawing.Size(this.hero.life, PICTUREHEIGHT);
+			this.lifeBar.Size = new System.Drawing.Size(this.hero.life, PICTURE_HEIGHT);
 
 			this.lifeLabel.Text = "hp : " + hero.life.ToString() + "%";
 
@@ -71,7 +75,62 @@ namespace Game
 			this.enemyNameBox.Text = "악당 : " +  enemy.name;
 
 			this.enemyLifeBar.BackColor = System.Drawing.Color.Red;
-			this.enemyLifeBar.Size = new System.Drawing.Size(enemy.life, PICTUREHEIGHT);
+			this.enemyLifeBar.Size = new System.Drawing.Size(enemy.life, PICTURE_HEIGHT);
+
+			this.enemyLifeLabel.Text = "hp : " + enemy.life.ToString() + "%";
+
+			this.enemyPowerBar.ReadOnly = true;
+			this.enemyPowerBar.Text = enemy.power.ToString();
+			this.enemyPowerLabel.Text = "power : ";
+
+			this.enemyDefenseBar.ReadOnly = true;
+			this.enemyDefenseBar.Text = enemy.defense.ToString();
+			this.enemyDefenseLabel.Text = "defense : ";
+
+			this.enemyPicture.Load(@"gan.png");
+
+			//기타
+			this.endTurnButton.Text = "End Turn";
+
+			this.textBox.Multiline = true;
+			this.textBox.Size = new System.Drawing.Size(650, 650);
+		}
+
+		public void nextEnemy()
+		{
+			this.enemy = enemyList[enemyCount];
+
+			//hero
+			this.nameBox.Text = "용사 : " + hero.name;
+
+			this.lifeBar.BackColor = System.Drawing.Color.Green;
+			this.lifeBar.Size = new System.Drawing.Size(this.hero.life, PICTURE_HEIGHT);
+
+			this.lifeLabel.Text = "hp : " + hero.life.ToString() + "%";
+
+			this.powerBox.ReadOnly = true;
+			this.powerBox.Text = hero.power.ToString();
+			this.powerLabel.Text = "power : ";
+
+			this.defenseBox.ReadOnly = true;
+			this.defenseBox.Text = hero.defense.ToString();
+			this.defenseLabel.Text = "defense : ";
+
+			this.heroPicture.Load(hero.img);
+
+			this.attackRadioButton.Text = "attack";
+			this.attackRadioButton.Checked = true;
+
+			this.defenseRadioButton.Text = "defense";
+
+			this.skill1RadioButton.Text = this.hero.skillName1;
+			this.skill2RadioButton.Text = this.hero.skillName2;
+
+			//enemy
+			this.enemyNameBox.Text = "악당 : " +  enemy.name;
+
+			this.enemyLifeBar.BackColor = System.Drawing.Color.Red;
+			this.enemyLifeBar.Size = new System.Drawing.Size(enemy.life, PICTURE_HEIGHT);
 
 			this.enemyLifeLabel.Text = "hp : " + enemy.life.ToString() + "%";
 
@@ -176,9 +235,9 @@ namespace Game
 
 		private void applyLife()
 		{
-			this.lifeBar.Size = new System.Drawing.Size(this.hero.life, PICTUREHEIGHT);
+			this.lifeBar.Size = new System.Drawing.Size(this.hero.life, PICTURE_HEIGHT);
 			this.lifeLabel.Text = "hp : " + hero.life.ToString() + "%";
-			this.enemyLifeBar.Size = new System.Drawing.Size(this.enemy.life, PICTUREHEIGHT);
+			this.enemyLifeBar.Size = new System.Drawing.Size(this.enemy.life, PICTURE_HEIGHT);
 			this.enemyLifeLabel.Text = "hp : " + enemy.life.ToString() + "%";
 		}
 
@@ -186,24 +245,38 @@ namespace Game
 		{
 			if(this.enemy.life <= 0)
 			{
-				if(MessageBox.Show("악당 " + this.enemy.name + "을 죽였다!\n다시 할건가?", "승리", MessageBoxButtons.YesNo) 
-					== DialogResult.Yes)
+				if (enemyCount < 3)
 				{
-					reset(new Hero(HERO_LIFE, HERO_POWER, HERO_DEFENSE, "middle.png"), new Enemy(100, 8, 3, "gan.png"));
-					applyLife();
-				} else
+					if (MessageBox.Show("악당 " + this.enemy.name + "을 죽였다!\n다시 할건가?", "승리", MessageBoxButtons.YesNo)
+						== DialogResult.Yes)
+					{
+						++enemyCount;
+						nextEnemy();
+						applyLife();
+					}
+					else
+					{
+						Application.Exit();
+					}
+				}
+				else
 				{
+					if(MessageBox.Show("끝", "끝", MessageBoxButtons.OK) == DialogResult.OK)
+					{
+						Application.Exit();
+					}
 					Application.Exit();
-				};
+				}
 
 			} else if(this.hero.life <= 0)
 			{
 				if(MessageBox.Show("용사 " + this.hero.name + "가 죽었다!\n다시 할건가?", "패배", MessageBoxButtons.YesNo) 
 					== DialogResult.Yes)
 				{
-					reset(new Hero(HERO_LIFE, HERO_POWER, HERO_DEFENSE, "middle.png"), new Enemy(100, 8, 3, "gan.png"));
+					nextEnemy();
 					applyLife();
-				} else
+				}
+				else
 				{
 					Application.Exit();
 				};
